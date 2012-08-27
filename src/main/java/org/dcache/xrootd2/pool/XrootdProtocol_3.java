@@ -19,10 +19,36 @@
  */
 package org.dcache.xrootd2.pool;
 
+import java.io.RandomAccessFile;
+
+import diskCacheV111.util.PnfsId;
+import diskCacheV111.vehicles.ProtocolInfo;
+import diskCacheV111.vehicles.StorageInfo;
+import org.dcache.pool.movers.IoMode;
+import org.dcache.pool.repository.Allocator;
+import org.dcache.pool.repository.FileRepositoryChannel;
+
 import dmg.cells.nucleus.CellEndpoint;
 
-public class XrootdProtocol_3 extends org.dcache.xrootd.pool.XrootdProtocol_3 {
-    public XrootdProtocol_3(CellEndpoint endpoint) throws Exception {
+/**
+ * Xrootd mover for 1.9.12.
+ */
+public class XrootdProtocol_3 extends org.dcache.xrootd.pool.XrootdProtocol_3
+{
+    public XrootdProtocol_3(CellEndpoint endpoint) throws Exception
+    {
         super(endpoint);
+    }
+
+    public void runIO(RandomAccessFile file,
+                      ProtocolInfo protocol,
+                      StorageInfo storage,
+                      PnfsId pnfsId,
+                      Allocator allocator,
+                      IoMode access)
+        throws Exception
+    {
+        runIO(new FileRepositoryChannel(file), protocol,
+              storage, pnfsId, allocator, access);
     }
 }

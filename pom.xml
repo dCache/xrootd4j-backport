@@ -93,6 +93,12 @@
           <artifactId>xrootd4j-authz-plugin-alice</artifactId>
           <version>1.0.1</version>
       </dependency>
+      <dependency>
+          <groupId>org.bouncycastle</groupId>
+          <artifactId>bcprov-jdk16</artifactId>
+          <version>1.43</version>
+          <!-- JGlobus relies on this specific version -->
+      </dependency>
   </dependencies>
 
   <build>

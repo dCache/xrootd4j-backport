@@ -840,7 +840,7 @@ public class XrootdDoor
     public final static String hh_get_children = "[-binary]";
     public Object ac_get_children(Args args)
     {
-        boolean binary = args.hasOption("binary");
+        boolean binary = args.getOpt("binary") != null;
         if (binary) {
             String [] list = new String[] { _cellName };
             return new LoginManagerChildrenInfo(_cellName, _domainName, list);
@@ -865,7 +865,7 @@ public class XrootdDoor
         doorInfo.setProcess("");
         doorInfo.setIoDoorEntries(entries
                 .toArray(new IoDoorEntry[entries.size()]));
-        return args.hasOption("binary") ? doorInfo : doorInfo.toString();
+        return (args.getOpt("binary") != null) ? doorInfo : doorInfo.toString();
     }
 
     public static final String hh_kill_mover =
